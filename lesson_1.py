@@ -1,12 +1,13 @@
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import openai
 from openai import OpenAI
 import re
 import httpx
 import os
 
+
 # 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+load_dotenv(dotenv_path='./.env')
 
 client = OpenAI()
 chat_completion = client.chat.completions.create(

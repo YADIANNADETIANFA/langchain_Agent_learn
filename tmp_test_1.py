@@ -1,7 +1,7 @@
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-# 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+
+load_dotenv(dotenv_path="./.env")
 
 from openai import OpenAI
 

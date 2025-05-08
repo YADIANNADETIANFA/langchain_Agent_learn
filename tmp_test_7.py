@@ -1,8 +1,8 @@
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-# 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+
+load_dotenv(dotenv_path="./.env")
 
 # **************************************************************************
 
@@ -207,3 +207,11 @@ async def main():
 
 
 asyncio.run(main())
+
+
+"""
+`plan_step`，`execute_step`、`replan_step`
+Langgraph的运行机制，会自动根据它们的输出，更新`PlanExecute`这个状态(state)
+
+即，每个`step`函数的返回值应是`PlanExecute`的子集字段的更新，Langgraph会用这些返回值合并更新整个状态。
+"""

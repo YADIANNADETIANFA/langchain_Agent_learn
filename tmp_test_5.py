@@ -1,9 +1,9 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 
-# 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+
+load_dotenv(dotenv_path="./.env")
 
 llm = ChatOpenAI(model="gpt-4")
 
