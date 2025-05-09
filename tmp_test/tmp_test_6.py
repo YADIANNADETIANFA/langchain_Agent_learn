@@ -3,7 +3,7 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
 
-load_dotenv(dotenv_path="./.env")
+load_dotenv(dotenv_path="../.env")
 
 # **************************************************************************
 
@@ -100,7 +100,7 @@ print(result)
 
 # 将生成的图片保存到文件
 graph_png = app.get_graph().draw_mermaid_png()
-with open("./dataset/tmp_test_6.png", "wb") as f:
+with open("../dataset/tmp_test_6.png", "wb") as f:
     f.write(graph_png)
 
 

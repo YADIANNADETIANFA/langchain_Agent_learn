@@ -1,4 +1,4 @@
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated
 import operator
@@ -7,8 +7,7 @@ from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
 
 
-# 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+load_dotenv(dotenv_path='../.env')
 
 tool = TavilySearchResults(max_results=2)
 

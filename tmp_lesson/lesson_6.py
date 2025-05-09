@@ -1,4 +1,4 @@
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated, List
 import operator
@@ -12,8 +12,8 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-# 自动查找 .env 文件并加载
-load_dotenv(find_dotenv())
+
+load_dotenv(dotenv_path="../.env")
 
 # model = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 model = ChatOpenAI(model="gpt-4o", temperature=0)
@@ -140,7 +140,7 @@ with SqliteSaver.from_conn_string(":memory:") as memory:
     graph = builder.compile(checkpointer=memory)
 
     graph_png = graph.get_graph().draw_mermaid_png()
-    with open("./dataset/lesson-6.png", "wb") as f:
+    with open("../dataset/lesson-6.png", "wb") as f:
         f.write(graph_png)
 
     thread = {"configurable": {"thread_id": "1"}}

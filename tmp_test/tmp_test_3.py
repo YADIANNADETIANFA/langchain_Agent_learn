@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
 
-load_dotenv(dotenv_path="./.env")
+load_dotenv(dotenv_path="../.env")
 
 llm = ChatOpenAI(model="gpt-4o")
 
@@ -21,7 +21,7 @@ def png_to_base64(pic_path: Path):
 # **************************************************************************
 
 
-# image_date = png_to_base64(Path("./dataset/tmp_test_3_pic.png"))
+# image_date = png_to_base64(Path("../dataset/tmp_test_3_pic.png"))
 # message = HumanMessage(
 #     content=[
 #         {"type": "text", "text": "用中文描述这张图片的主要内容"},
@@ -53,7 +53,7 @@ def png_to_base64(pic_path: Path):
 #
 # model_with_tools = llm.bind_tools([mood_tool])
 #
-# image_date = png_to_base64(Path("./dataset/tmp_test_3_pic.png"))
+# image_date = png_to_base64(Path("../dataset/tmp_test_3_pic.png"))
 # message = HumanMessage(
 #     content=[
 #         {"type": "text", "text": "用中文描述，这张图片右侧蓝色人物的情绪"},

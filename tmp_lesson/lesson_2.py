@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
 
 
-load_dotenv(dotenv_path='./.env')
+load_dotenv(dotenv_path='../.env')
 
 tool = TavilySearchResults(max_results=2)
 print(type(tool))
@@ -70,7 +70,7 @@ model = ChatOpenAI(model="gpt-4-turbo")
 abot = Agent(model, [tool], system=prompt)
 
 graph_png = abot.graph.get_graph().draw_mermaid_png()
-with open("./dataset/lesson-2.png", "wb") as f:
+with open("../dataset/lesson-2.png", "wb") as f:
     f.write(graph_png)
 
 # messages = [HumanMessage(content="What is the weather in sf?")]

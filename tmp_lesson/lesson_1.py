@@ -7,7 +7,7 @@ import os
 
 
 # 自动查找 .env 文件并加载
-load_dotenv(dotenv_path='./.env')
+load_dotenv(dotenv_path='../.env')
 
 client = OpenAI()
 chat_completion = client.chat.completions.create(
