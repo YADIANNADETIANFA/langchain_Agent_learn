@@ -4,7 +4,8 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import asyncio
 
-load_dotenv(dotenv_path='./.env')
+
+load_dotenv(dotenv_path='../.env')
 
 model = ChatOpenAI(model="gpt-4o")
 
