@@ -1,7 +1,13 @@
-import asyncio
 from mcp.client.sse import sse_client
 from mcp import ClientSession
 import asyncio
+from dotenv import load_dotenv
+
+
+# client端，设置环境变量`NO_PROXY=127.0.0.1,localhost`
+# 即告诉client端的HTTP请求库，对于"127.0.0.1 或 localhost"，不要使用代理，直接连接
+# 它不会影响服务器的监听行为，而是影响发起请求的一方是否通过代理去访问地址
+load_dotenv(dotenv_path='../.env')
 
 
 async def main():
