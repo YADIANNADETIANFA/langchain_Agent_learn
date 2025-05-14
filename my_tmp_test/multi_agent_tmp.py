@@ -127,17 +127,38 @@ graph.add_conditional_edges(
 
 app = graph.compile()
 
-graph_png = app.get_graph().draw_mermaid_png()
-with open("../dataset/multi_agent_tmp.png", "wb") as f:
-    f.write(graph_png)
+import nest_asyncio
+from langchain_core.runnables.graph import CurveStyle, MermaidDrawMethod, NodeStyles
+from websockets import client
 
-for s in app.stream({
-    "task": "根据表中的数据，为我生成一篇报告。",
-    "finished_step": [],
-    "next_step": "",
-    "data": [],
-    "report": "",
-    "step_num": 0,
-    "max_step": 5,
-}):
-    print(s)
+
+# graph_png = app.get_graph().draw_mermaid_png()
+# with open("../dataset/multi_agent_tmp.png", "wb") as f:
+#     f.write(graph_png)
+
+app.get_graph().draw_mermaid_png(
+    curve_style=CurveStyle.LINEAR,
+    node_colors=NodeStyles(first="#ffdfba", last="#baffc9", default="#fad7de"),
+    wrap_label_n_words=9,
+    output_file_path=None,
+    draw_method=MermaidDrawMethod.PYPPETEER,
+    background_color="white",
+    padding=10,
+)
+print('here')
+
+# for s in app.stream({
+#     "task": "根据表中的数据，为我生成一篇报告。",
+#     "finished_step": [],
+#     "next_step": "",
+#     "data": [],
+#     "report": "",
+#     "step_num": 0,
+#     "max_step": 5,
+# }):
+#     print(s)
+
+
+# 使用Ubuntu安装pygraphviz依赖，跑脚本，出图
+# https://langchain-ai.github.io/langgraph/how-tos/graph-api/#png
+# https://github.com/pygraphviz/pygraphviz/blob/main/INSTALL.txt
