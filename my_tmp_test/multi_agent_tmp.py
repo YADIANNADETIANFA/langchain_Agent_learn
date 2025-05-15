@@ -7,7 +7,8 @@ from langchain_openai import ChatOpenAI
 
 load_dotenv(dotenv_path='../.env')
 
-model = ChatOpenAI(model="gpt-4o", temperature=0)
+# model = ChatOpenAI(model="gpt-4o", temperature=0)
+model = ChatOpenAI(model="gpt-4o")
 
 
 # plan_agent
@@ -127,38 +128,26 @@ graph.add_conditional_edges(
 
 app = graph.compile()
 
-import nest_asyncio
-from langchain_core.runnables.graph import CurveStyle, MermaidDrawMethod, NodeStyles
-from websockets import client
 
+# windows系统，`app.get_graph().draw_mermaid_png()`网络异常无法使用
+# 因此，在Ubuntu虚拟机，使用`app.get_graph().draw_png()`进行做图
+#   https://github.com/pygraphviz/pygraphviz/blob/main/INSTALL.txt
+#   https://langchain-ai.github.io/langgraph/how-tos/graph-api/#png
+# `apt-get install graphviz graphviz-dev`
+# `uv add pygraphviz`
 
-# graph_png = app.get_graph().draw_mermaid_png()
+# graph_png = app.get_graph().draw_png()
 # with open("../dataset/multi_agent_tmp.png", "wb") as f:
 #     f.write(graph_png)
 
-app.get_graph().draw_mermaid_png(
-    curve_style=CurveStyle.LINEAR,
-    node_colors=NodeStyles(first="#ffdfba", last="#baffc9", default="#fad7de"),
-    wrap_label_n_words=9,
-    output_file_path=None,
-    draw_method=MermaidDrawMethod.PYPPETEER,
-    background_color="white",
-    padding=10,
-)
-print('here')
 
-# for s in app.stream({
-#     "task": "根据表中的数据，为我生成一篇报告。",
-#     "finished_step": [],
-#     "next_step": "",
-#     "data": [],
-#     "report": "",
-#     "step_num": 0,
-#     "max_step": 5,
-# }):
-#     print(s)
-
-
-# 使用Ubuntu安装pygraphviz依赖，跑脚本，出图
-# https://langchain-ai.github.io/langgraph/how-tos/graph-api/#png
-# https://github.com/pygraphviz/pygraphviz/blob/main/INSTALL.txt
+for s in app.stream({
+    "task": "根据表中的数据，为我生成一篇报告。",
+    "finished_step": [],
+    "next_step": "",
+    "data": [],
+    "report": "",
+    "step_num": 0,
+    "max_step": 5,
+}):
+    print(s)
